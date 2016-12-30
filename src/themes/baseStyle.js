@@ -1,4 +1,5 @@
 import { Platform,StyleSheet } from 'react-native';
+import * as _ from 'lodash';
 
 const baseStyle = {
     container: {
@@ -13,7 +14,7 @@ const baseStyle = {
 };
 
 export default function createStyle(oStyle){
-      if(typeof oStyle !== "object"){
+      if(!_.isObject(oStyle)){
         return StyleSheet.create(Object.assign({}, baseStyle));
       }
       return StyleSheet.create(Object.assign({}, baseStyle, oStyle));

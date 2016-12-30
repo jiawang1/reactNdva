@@ -1,3 +1,5 @@
+import * as oService from '../services/homeService';
+
 export default {
   namespace: 'home',
   state: {
@@ -14,15 +16,22 @@ export default {
     //   });
     // },
  // },
- // effects: {
-    // * fetchUser({ payload: id }, { call, put }) {
-    //   const user = yield call(fetchUser, id);
-    //   yield put({ type: 'saveUser', payload: user });
-    // },
-  //},
+ effects: {
+    * fetchUser({ payload: id }, { call, put }) {
+      console.log(`fetch user effect got info from view ${id}`);
+      const data = yield call(oService.fetchRandom, id + 1);
+      yield put({ type: 'fetchPassword', payload: data.number });
+    },
+    * fetchPassword({ payload: id }, { call, put }) {
+      console.log(`fetch password effect got info from last effect ${id}`);
+      const data = yield call(oService.fetchRandom, id + 1);
+      yield put({ type: 'saveUser', payload: data.number });
+    },
+  },
   reducers: {
-    // saveUser(state, { payload: user }) {
-    //   return { ...state, usersById: { ...state.usersById, [user.id]: user } };
-    // },
+    saveUser(state, { payload: number }) {
+      console.log(`save user reducer got number ${number}`);
+      return { ...state, number };
+    },
   },
 }

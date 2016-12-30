@@ -92,7 +92,8 @@ class HomeView extends Component {
         };
     }
     pressButon() {
-        Actions.counter({ from: 'Home' });
+        const {dispatch} = this.props;
+        dispatch({type: "home/fetchUser", payload: 1});
     }
     toDetail() {
         Actions.productDetail({ from: 'Home' });
@@ -106,10 +107,13 @@ class HomeView extends Component {
     }
 
     render() {
+
+        let {number} = this.props;
+        console.log(`number return from effect ${number}`);
         return (
             <ScrollView style={styles.container}>
                 <View>
-                    <SearchBar placeholder="搜索"></SearchBar>
+                    <SearchBar placeholder="搜索" ></SearchBar>
                 </View>
                 <View style={styles.imageContainer}>
                     <Carousel autoplay infinite>
@@ -202,7 +206,7 @@ class HomeView extends Component {
                         </View>
                     </TouchableHighlight>
                 </Flex>
-                <Button onClick={() => { this.pressButon() } }>to cart</Button>
+                <Button onClick={() => { this.pressButon() } }>try effect</Button>
                 <View style={{ flex: 1 }}>
                     <View style={{ flex: 1, backgroundColor: 'powderblue' }} />
                     <View style={{ flex: 2, backgroundColor: 'skyblue' }} />
@@ -210,10 +214,10 @@ class HomeView extends Component {
                 </View>
             </ScrollView>
         );
-
     }
 }
 
-export default connect(state => ({
-    test: 1
-}))(HomeView);
+export default connect(state =>  ({
+            number: state.home.number
+})
+)(HomeView);

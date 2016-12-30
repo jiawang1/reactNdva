@@ -11,10 +11,9 @@ export default class AppRouter extends Component{
             <Scene key="homeContainer" tabs={true} initial={true} tabBarStyle={{backgroundColor:'whitesmoke'}}>
                 <Scene key="home" hideNavBar={true} component={HomeView} initial={true} title="首页"/>
             </Scene>
-            <Scene key="productDetail" component={ProductDetailView}  title="商品详情"/>
+            <Scene key="productDetail" component={ProductDetailView} title="商品详情"/>
         </Scene>
       </Router>
    );
   }
-
 }

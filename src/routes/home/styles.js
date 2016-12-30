@@ -4,11 +4,6 @@ import createStyle from './../../themes/baseStyle';
 
 
 export default createStyle({
-    container: {
-        flex: 1,
-        backgroundColor: '#F8F8F8',
-        marginTop: 20,
-    },
 
     carousel: {
         justifyContent: 'center',
